@@ -1,5 +1,5 @@
 import { Button, Modal, Select } from 'antd'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -29,41 +29,38 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
 }) => {
   const [topicName, setTopicName] = useState('')
   const [keywords, setKeywords] = useState('')
-
+  const [errorMessage, setErrorMessage] = useState('')
   const handleChange = (value: string) => {
     setKeywords(value)
   }
 
   const handleInputChnage = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTopicName(e.target.value)
+    setErrorMessage('')
   }
-  // {
-  //   "id": "3",
-  //   "topic": "React Hooks",
-  //   "keywords": [
-  //     "React",
-  //     "Hooks"
-  //   ],
-  //   "content": "React Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.",
-  //   "categories": "all"
-  // },
 
   async function createTopic() {
-    const id = uuidv4()
-    const payload = {
-      id,
-      keywords,
-      topic: topicName,
-      content: '',
-      categories: TabpaneEnum.Custom,
-    }
+    if (topicName.trim() === '') {
+      setErrorMessage('Please enter topic name.')
+    } else {
+      setErrorMessage('')
 
-    try {
-      const response = await client.post('/blogs', payload)
-      console.log('POST request successful:', response.data)
-      handleCancel()
-    } catch (error) {
-      console.error('Error making POST request:', error)
+      const id = uuidv4()
+      const payload = {
+        id,
+        keywords,
+        topic: topicName,
+        content: '',
+        categories: TabpaneEnum.Custom,
+      }
+
+      try {
+        const response = await client.post('/blogs', payload)
+        console.log('POST request successful:', response.data)
+        handleCancel()
+      } catch (error) {
+        console.error('Error making POST request:', error)
+      }
     }
   }
 
@@ -87,6 +84,11 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
           required
         />
         <span className={styles.floatingLabel}>Choose a topic name</span>
+        {errorMessage ? (
+          <div className={styles.errorMessageText}>{errorMessage}</div>
+        ) : (
+          <></>
+        )}
         <br />
         <br />
 
