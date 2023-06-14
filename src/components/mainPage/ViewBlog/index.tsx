@@ -1,26 +1,34 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { client } from '..'
-
+import { BlogListType, client } from '..'
+import styles from './index.module.scss'
 const ViewBlog: FC = () => {
   const { blogId } = useParams()
-  const [contentData, setContentData] = useState(``)
+  const [blogData, setBlogData] = useState<BlogListType>()
 
   useEffect(() => {
     const fetchBlogByid = async () => {
       const response = await client.get(`/blogs/${blogId}`)
-      setContentData(response.data.content)
+      setBlogData(response.data)
     }
     fetchBlogByid()
   }, [])
 
   return (
-    <div>
-      {contentData ? (
-        <div dangerouslySetInnerHTML={{ __html: contentData }} />
-      ) : (
-        <></>
-      )}
+    <div className={styles.viewBlogWrapperContainer}>
+      <div className={styles.viewBlogWrapper}>
+        <div className={styles.titleWrapper}>
+          <h1 className={styles.title}>{blogData?.topic}</h1>
+        </div>
+
+        <div className={styles.contentWrapper}>
+          {blogData ? (
+            <div dangerouslySetInnerHTML={{ __html: blogData.content }} />
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
