@@ -5,3 +5,4 @@ declare module "*.less";
 declare module "*.pdf";
 declare module "*.module.css";
 declare module "*.module.scss";
+declare module "quill-image-resize-module";

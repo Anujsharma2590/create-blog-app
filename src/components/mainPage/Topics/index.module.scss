@@ -1,0 +1,12 @@
+.topic-row-conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.delete-icon-wrapper {
+  cursor: pointer;
+  margin-right: 20px;
+}
