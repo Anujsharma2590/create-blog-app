@@ -124,7 +124,6 @@ const BlogEditor = () => {
           className={styles.editorWrapper}
         />
       </div>
-      {/* <div dangerouslySetInnerHTML={{ __html: text }} /> */}
     </div>
   )
 }

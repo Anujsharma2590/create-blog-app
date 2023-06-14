@@ -25,10 +25,18 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
     }
   }
 
+  function navigateToViewBlog() {
+    if (data) {
+      navigate(`/view/${data.id}`)
+    }
+  }
+
   return (
     <div className={styles.topicRowConatiner}>
       <div>
-        <div>{data ? data.topic : ''}</div>
+        <div className={styles.topicHeading} onClick={navigateToViewBlog}>
+          {data ? data.topic : ''}
+        </div>
         <div>
           {data && data.keywords.length > 0 ? (
             data.keywords.map((ele, index) => <span key={index}>{ele} </span>)
