@@ -1,14 +1,13 @@
 import { FC } from 'react'
-import styles from './index.module.scss'
-import BlogEditor from './components/blogEditor'
-import TabContainer from './components/mainPage'
+import AppRoutes from './routes/AppRoutes'
+import { BrowserRouter } from 'react-router-dom'
+import './global.css'
 
 const App: FC = () => {
   return (
-    <div className={styles.mainContainer}>
-      {/* <BlogEditor /> */}
-      <TabContainer />
-    </div>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   )
 }
 

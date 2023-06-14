@@ -3,7 +3,8 @@ import styles from './index.module.scss'
 
 import { Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
-import { BlogListType } from '..'
+import { BlogListType, client } from '..'
+import { useNavigate, useParams } from 'react-router-dom'
 
 type topicsArrayTypeProps = {
   data?: BlogListType
@@ -11,11 +12,19 @@ type topicsArrayTypeProps = {
 }
 
 const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
+  const navigate = useNavigate()
+
   const handleDelete = () => {
     if (data) {
       onDelete(data?.id)
     }
   }
+  function handleNavigate() {
+    if (data) {
+      navigate(`/${data.id}`)
+    }
+  }
+
   return (
     <div className={styles.topicRowConatiner}>
       <div>
@@ -32,7 +41,7 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
         <span className={styles.deleteIconWrapper} onClick={handleDelete}>
           <DeleteOutlined />
         </span>
-        <Button>Write &gt;</Button>
+        <Button onClick={handleNavigate}>Write &gt;</Button>
       </div>
     </div>
   )
