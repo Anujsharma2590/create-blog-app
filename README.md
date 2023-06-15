@@ -67,16 +67,24 @@ Once the application is up and running, you can use the following steps to inter
 
 ## Screenshot
 1. dashboard
+
 ![dashboard](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/8c2a1a38-8c95-4bfb-824d-3aee7cb6f8b3)
 
 2. Create
+
 ![create](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/4818ac0d-1ff9-45bd-96fa-33c1539aacda)
 
 3. Create/Edit
+
 ![edit](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/3218545b-bafc-4e2f-a53a-d8ffadb9e198)
 
-4. view
+4. View
+
 ![view](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/2e648779-fe77-46da-993c-4212ab195a7c)
+
+5. Delete
+
+![delete](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/d680e1b4-f497-4e29-bb4d-cffa76360f21)
 
 
 
