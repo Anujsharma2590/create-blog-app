@@ -1,6 +1,6 @@
 # create-blog-app
 
-The Blog App is a web application developed using HTML, CSS, and React. It allows users to create and edit blog posts. The project utilizes the Ant Design library for UI components and JSON Server as a mock API for data storage.
+The Blog App is a web application developed using HTML, CSS, and React. It allows users to create and edit blog posts. The project utilizes the Ant Design library for UI components and JSON Server as a mock API for data storage. Project setup is done by without create-react-app.
 
 
 <h3>Tool-kit & languages Used</h3>
@@ -8,6 +8,7 @@ The Blog App is a web application developed using HTML, CSS, and React. It allow
 - HTML/CSS
 - React
 - JavaScript/TypeScript
+- webpack
 - Ant Design (antd)
 - JSON Server
 - axios
