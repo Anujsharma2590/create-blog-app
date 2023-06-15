@@ -52,7 +52,7 @@ To run the Blog App locally, follow these steps:
    ```bash
    npm start   
    
-##Usage
+## Usage
 
 Once the application is up and running, you can use the following steps to interact with it:
 
