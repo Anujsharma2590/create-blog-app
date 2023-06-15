@@ -7,9 +7,12 @@ The Blog App is a web application developed using HTML, CSS, and React. It allow
 
 - HTML/CSS
 - React
+- JavaScript/TypeScript
 - Ant Design (antd)
 - JSON Server
-* axios
+- axios
+- react-quill
+
 
 ## Features
 
