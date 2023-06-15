@@ -1,9 +1,44 @@
-.topic-row-conatiner {
+$draft-color: #633ea5;
+$draft-background-color: #f1ecf8;
+
+$review-color: #ed7021;
+$review-background-color: #fdf0e7;
+
+$hold-color: #666666;
+$hold-background-color: #f2f2f2;
+
+$more-info-color: #d41f00;
+$more-info-background-color: #ffe9e5;
+
+$live-color: #0f8f10;
+$live-background-color: #e8fde8;
+
+$in-progress-color: #ffb100;
+$in-progress-background-color: #fdf7e9;
+
+.main-page-heading {
+  margin-bottom: 5px;
+}
+
+.topic-row-container-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid grey;
-  padding: 10px;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-bottom: 30px;
+  .topic-row-conatiner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    transition: transform 200ms ease-in-out;
+
+    &:hover {
+      border: 1px solid #e65027;
+      box-shadow: 0px 0px 6px rgba(51, 51, 51, 0.25);
+    }
+  }
 }
 
 .delete-icon-wrapper {
@@ -12,5 +47,84 @@
 }
 
 .topic-heading {
-  cursor: pointer;
+  font: 500 16px/22px Roboto;
+  margin-bottom: 10px;
+}
+
+.Custom-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyword-wrapper-container {
+  display: flex;
+  column-gap: 5px;
+
+  .common {
+    padding: 0em 0.7em;
+    border-radius: 10px;
+  }
+
+  .status-tag {
+    border: 1px solid #d7d7d7;
+
+    color: black;
+  }
+
+  .logoDesign {
+    border: 1px solid $draft-color;
+    background-color: $draft-background-color;
+
+    color: $draft-color;
+  }
+
+  .onlinePresence {
+    border: 1px solid $review-color;
+    background-color: $review-background-color;
+
+    color: $review-color;
+  }
+
+  .smallBusinesses {
+    border: 1px solid $hold-color;
+    background-color: $hold-background-color;
+
+    color: $hold-color;
+  }
+
+  .digitalMarketing {
+    border: 1px solid $more-info-color;
+    background-color: $more-info-background-color;
+
+    color: $more-info-color;
+  }
+
+  .branding {
+    border: 1px solid $live-color;
+    background-color: $live-background-color;
+
+    color: $live-color;
+  }
+
+  .websiteDesign {
+    border: 1px solid $in-progress-color;
+    background-color: $in-progress-background-color;
+
+    color: $in-progress-color;
+  }
+
+  .socialMediaManagement {
+    border: 1px solid $in-progress-color;
+    background-color: $in-progress-background-color;
+
+    color: $in-progress-color;
+  }
+
+  .tips {
+    border: 1px solid $live-color;
+    background-color: $live-background-color;
+
+    color: $live-color;
+  }
 }

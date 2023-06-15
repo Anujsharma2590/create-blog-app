@@ -1,14 +1,25 @@
-import React, { FC } from 'react'
-import styles from './index.module.scss'
-
+import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
-import { BlogListType, client } from '..'
-import { useNavigate, useParams } from 'react-router-dom'
+import { BlogListType } from '..'
+import { DeleteIcon } from '../../../resources/icons/DeleteIcon'
+
+import styles from './index.module.scss'
 
 type topicsArrayTypeProps = {
   data?: BlogListType
   onDelete: (id: string) => void
+}
+
+enum keywordTag {
+  onlinePresence = 'onlinePresence',
+  smallBusinesses = 'smallBusinesses',
+  digitalMarketing = 'digitalMarketing',
+  branding = 'branding',
+  websiteDesign = 'websiteDesign',
+  logoDesign = 'logoDesign',
+  tips = 'tips',
+  socialMediaManagement = 'socialMediaManagement',
 }
 
 const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
@@ -26,6 +37,9 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
   }
 
   function navigateToViewBlog() {
+    if (!data?.content) {
+      return
+    }
     if (data) {
       navigate(`/view/${data.id}`)
     }
@@ -34,25 +48,76 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
   return (
     <div className={styles.topicRowConatiner}>
       <div>
-        <div className={styles.topicHeading} onClick={navigateToViewBlog}>
+        <div
+          className={styles.topicHeading}
+          style={{ cursor: data?.content ? 'pointer' : '' }}
+          onClick={navigateToViewBlog}
+        >
           {data ? data.topic : ''}
         </div>
-        <div>
+
+        <div className={styles.keywordWrapperContainer}>
           {data && data.keywords.length > 0 ? (
-            data.keywords.map((ele, index) => <span key={index}>{ele} </span>)
+            data.keywords.map((ele, index) => (
+              <span
+                className={` ${styles.common} ${
+                  styles[generateStatusColorClassName(toCamelCase(ele))]
+                }`}
+              >
+                <span key={index}>{ele} </span>
+              </span>
+            ))
           ) : (
             <></>
           )}
         </div>
       </div>
-      <div>
+      <div className={styles.CustomContainer}>
         <span className={styles.deleteIconWrapper} onClick={handleDelete}>
-          <DeleteOutlined />
+          <DeleteIcon />
         </span>
-        <Button onClick={handleNavigate}>Write &gt;</Button>
+        <Button
+          style={{ background: '#E65027', color: 'white' }}
+          onClick={handleNavigate}
+        >
+          {data?.content ? 'Edit' : ' Write'} &gt;
+        </Button>
       </div>
     </div>
   )
 }
 
 export default TopicRow
+
+function toCamelCase(str: string) {
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (match, index) => {
+      return index === 0 ? match.toLowerCase() : match.toUpperCase()
+    })
+    .replace(/\s+/g, '')
+}
+
+export function generateStatusColorClassName(keyword: string) {
+  if (!keyword) return ''
+
+  switch (keyword) {
+    case keywordTag.onlinePresence:
+      return 'onlinePresence'
+    case keywordTag.smallBusinesses:
+      return 'smallBusinesses'
+    case keywordTag.digitalMarketing:
+      return 'digitalMarketing'
+    case keywordTag.branding:
+      return 'branding'
+    case keywordTag.websiteDesign:
+      return 'websiteDesign'
+    case keywordTag.logoDesign:
+      return 'logoDesign'
+    case keywordTag.tips:
+      return 'tips'
+    case keywordTag.socialMediaManagement:
+      return 'socialMediaManagement'
+    default:
+      return 'statusTag'
+  }
+}

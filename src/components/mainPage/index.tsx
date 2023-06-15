@@ -5,6 +5,7 @@ import type { TabsProps } from 'antd'
 import CreateModalTopic from './CreateModalTopic'
 import Topics from './Topics'
 import axios from 'axios'
+import styles from './index.module.scss'
 
 export const client = axios.create({
   baseURL: 'http://localhost:3006',
@@ -36,7 +37,15 @@ const TabContainer: FC = () => {
     setIsModalOpen(false)
   }
 
-  const operations = <Button onClick={showModal}>Add Topic &gt;</Button>
+  const operations = (
+    <Button
+      style={{ background: '#E65027', color: 'white' }}
+      onClick={showModal}
+      size="large"
+    >
+      Add Topic &gt;
+    </Button>
+  )
 
   const onChange = async (key: string) => {
     if (key === TabpaneEnum.All) {
@@ -147,11 +156,16 @@ const TabContainer: FC = () => {
   ]
 
   return (
-    <>
+    <div className={styles.tabContainerWrapper}>
       <h1>Categories</h1>
-      <Tabs tabBarExtraContent={operations} items={items} onChange={onChange} />
+      <Tabs
+        tabBarExtraContent={operations}
+        items={items}
+        onChange={onChange}
+        className={styles.tabContainer}
+      />
       <CreateModalTopic isModalOpen={isModalOpen} handleCancel={handleCancel} />
-    </>
+    </div>
   )
 }
 

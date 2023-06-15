@@ -3,6 +3,8 @@
   outline: 0;
   border-width: 0 0 2px;
   border-color: #f57c00;
+  font: 400 16px/20px Roboto;
+  margin-top: 10px;
   &:focus {
     border-color: #ff5722;
   }
@@ -18,10 +20,19 @@
   row-gap: 20px;
 
   .input-container {
-    margin: 20px 10px 10px;
+    margin: 20px 20px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 70px;
+    .input-container-wrappr {
+      flex: 1;
+
+      label {
+        font: normal 600 18px/16px Roboto;
+        color: #333;
+      }
+    }
   }
   .editor-wrapper {
     display: flex;

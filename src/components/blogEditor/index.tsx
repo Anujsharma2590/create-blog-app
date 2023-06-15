@@ -9,7 +9,7 @@ import { BlogListType, client } from '../mainPage'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 
 Quill.register('modules/ImageResize', ImageResize)
 
@@ -24,7 +24,7 @@ const BlogEditor = () => {
     setText(value)
   }
 
-  const handleUpdateBlog = () => {
+  const handleUpdateBlog = async () => {
     const payload = {
       content: text,
       topic: inputValue,
@@ -32,15 +32,16 @@ const BlogEditor = () => {
       keywords: blog?.keywords,
       categories: blog?.categories,
     }
+    try {
+      const response = await client.put(`/blogs/${blogId}`, payload)
 
-    client
-      .put(`/blogs/${blogId}`, payload)
-      .then((response) => {
-        console.log('Blog updated successfully')
-      })
-      .catch((error) => {
-        console.error('Error updating blog:', error)
-      })
+      if (response.data) {
+        message.success('Blog has been updated successfully', 2)
+      }
+    } catch (error) {
+      message.error('Error in updating the blog', 2)
+      console.error('Error making PUT request:', error)
+    }
   }
 
   useEffect(() => {
@@ -112,7 +113,13 @@ const BlogEditor = () => {
             />
           </div>
           <div>
-            <Button onClick={handleUpdateBlog}>Update</Button>
+            <Button
+              style={{ background: '#E65027', color: 'white' }}
+              size="large"
+              onClick={handleUpdateBlog}
+            >
+              Update
+            </Button>
           </div>
         </div>
         <ReactQuill

@@ -1,16 +1,20 @@
-import { Button, Modal, Select } from 'antd'
-import React, { FC, useEffect, useState } from 'react'
-
+import React, { FC, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-
-import styles from './index.module.scss'
-
+import { Button, Modal, Select, message } from 'antd'
 import type { SelectProps } from 'antd'
 import { TabpaneEnum, client } from '.'
 
+import styles from './index.module.scss'
+
 const options: SelectProps['options'] = [
-  { value: 'anuj', label: 'anuj sharma' },
-  { value: 'rahul', label: 'Rahul kumar' },
+  { value: 'online presence', label: 'online presence' },
+  { value: 'small businesses', label: 'small businesses' },
+  { value: 'digital marketing', label: 'digital marketing' },
+  { value: 'branding', label: 'branding' },
+  { value: 'website design', label: 'website design' },
+  { value: 'logo design', label: 'logo design' },
+  { value: 'tips', label: 'tips' },
+  { value: 'social media management', label: 'social media management' },
 ]
 
 type CreateModalTopicProps = {
@@ -28,10 +32,11 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
   handleCancel,
 }) => {
   const [topicName, setTopicName] = useState('')
-  const [keywords, setKeywords] = useState('')
+  const [keywordList, setKeywordList] = useState<string[]>([])
   const [errorMessage, setErrorMessage] = useState('')
-  const handleChange = (value: string) => {
-    setKeywords(value)
+
+  const handleChange = (value: string[]) => {
+    setKeywordList(value)
   }
 
   const handleInputChnage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +53,7 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
       const id = uuidv4()
       const payload = {
         id,
-        keywords,
+        keywords: keywordList,
         topic: topicName,
         content: '',
         categories: TabpaneEnum.Custom,
@@ -56,9 +61,14 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
 
       try {
         const response = await client.post('/blogs', payload)
-        console.log('POST request successful:', response.data)
+        if (response.data) {
+          message.success('Blog topic has been created successfully', 2)
+        }
+        setTopicName('')
+        setKeywordList([])
         handleCancel()
       } catch (error) {
+        message.error('Error in creating the topic', 2)
         console.error('Error making POST request:', error)
       }
     }
@@ -66,7 +76,8 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
 
   return (
     <Modal
-      title="Create Topic"
+      width={720}
+      title={<div className={styles.modalHeader}>Create Topic</div>}
       open={isModalOpen}
       onCancel={handleCancel}
       footer={
@@ -76,12 +87,13 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
         />
       }
     >
-      <div>
+      <div className={styles.modalContentWrapper}>
         <input
           type="text"
           className={styles.inputText}
           onChange={handleInputChnage}
           required
+          value={topicName}
         />
         <span className={styles.floatingLabel}>Choose a topic name</span>
         {errorMessage ? (
@@ -89,16 +101,18 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
         ) : (
           <></>
         )}
-        <br />
-        <br />
+
+        <div className={styles.keywordLabel}>Keywords:</div>
 
         <Select
           title="Select keywords"
+          placeholder="Select or Enter keywords"
           mode="tags"
           style={{ width: '100%' }}
-          placeholder="keywords"
           onChange={handleChange}
           options={options}
+          size={'large'}
+          value={keywordList}
         />
       </div>
     </Modal>
@@ -111,9 +125,15 @@ const CreateTopicModalFooter: FC<DeleteModalFooterProps> = ({
 }) => {
   return (
     <div className={styles.footerBtnContainer}>
-      <Button onClick={handleDiscard}>Cancel</Button>
+      <Button size="large" onClick={handleDiscard}>
+        Cancel
+      </Button>
 
-      <Button type="primary" onClick={handleCreate}>
+      <Button
+        style={{ background: '#E65027', color: 'white' }}
+        size="large"
+        onClick={handleCreate}
+      >
         Create
       </Button>
     </div>

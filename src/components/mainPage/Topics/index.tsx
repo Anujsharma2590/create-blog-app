@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import styles from './index.module.scss'
 import { BlogListType, TabpaneEnum, client } from '..'
 import TopicRow from './TopicRow'
+import { message } from 'antd'
 
 type TopicsPropsType = {
   topicsArray?: BlogListType[]
@@ -12,8 +13,10 @@ type TopicsPropsType = {
 const Topics: FC<TopicsPropsType> = ({ topicsArray, fetchBlogs, tabValue }) => {
   const handleDelete = async (id: string) => {
     try {
-      const res = await client.delete(`/blogs/${id}`)
-      if (res) {
+      const response = await client.delete(`/blogs/${id}`)
+
+      if (response) {
+        message.success('Blog topic has been deleted successfully', 2)
         fetchBlogs(tabValue)
       }
     } catch (error) {
@@ -22,18 +25,18 @@ const Topics: FC<TopicsPropsType> = ({ topicsArray, fetchBlogs, tabValue }) => {
     }
   }
   return (
-    <div>
-      <h2>RecommendedTopics</h2>
-      {topicsArray && topicsArray.length > 0 ? (
-        topicsArray.map((ele, index) => (
-          <div key={index}>
+    <>
+      <h2 className={styles.mainPageHeading}>Recommended Topics</h2>
+      <div className={styles.topicRowContainerWrapper}>
+        {topicsArray && topicsArray.length > 0 ? (
+          topicsArray.map((ele, index) => (
             <TopicRow data={ele} onDelete={handleDelete} />
-          </div>
-        ))
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    </>
   )
 }
 

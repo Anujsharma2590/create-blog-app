@@ -1,9 +1,11 @@
 import { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import { BlogListType, client } from '..'
 import styles from './index.module.scss'
 const ViewBlog: FC = () => {
   const { blogId } = useParams()
+  const navigate = useNavigate()
   const [blogData, setBlogData] = useState<BlogListType>()
 
   useEffect(() => {
@@ -14,8 +16,15 @@ const ViewBlog: FC = () => {
     fetchBlogByid()
   }, [])
 
+  function handleNavigateBack() {
+    navigate('/')
+  }
+
   return (
     <div className={styles.viewBlogWrapperContainer}>
+      <span className={styles.backBtn} onClick={handleNavigateBack}>
+        <ArrowLeftOutlined />
+      </span>
       <div className={styles.viewBlogWrapper}>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>{blogData?.topic}</h1>
