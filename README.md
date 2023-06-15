@@ -40,7 +40,7 @@ To run the Blog App locally, follow these steps:
    npm start
 5. Open the application in your browser:   
    ```bash
-   Open a web browser and navigate to http://localhost:7000 to access the application.
+   Open a web browser and navigate to http://localhost:3000 to access the application.
    
    
 1. Change to the project's directory:   
