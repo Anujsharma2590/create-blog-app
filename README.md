@@ -64,4 +64,19 @@ Once the application is up and running, you can use the following steps to inter
 2. To create a new blog post, click on the "Add Topic" button and write you blog. Once you finish writing then click on "Update" button.
 3. To edit an existing blog post, click on the "Edit" button on the topic/blog detail page and make the desired changes.
 4. To delete a blog post, click on the "Delete" button on the topic/blog then modal will open then press "Delete" button.  
-   
+
+## Screenshot
+1. dashboard
+![dashboard](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/8c2a1a38-8c95-4bfb-824d-3aee7cb6f8b3)
+
+2. Create
+![create](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/4818ac0d-1ff9-45bd-96fa-33c1539aacda)
+
+3. Create/Edit
+![edit](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/3218545b-bafc-4e2f-a53a-d8ffadb9e198)
+
+4. view
+![view](https://github.com/Anujsharma2590/create-blog-app/assets/60852406/2e648779-fe77-46da-993c-4212ab195a7c)
+
+
+
