@@ -27,7 +27,7 @@ To run the Blog App locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Anujsharma2590/create-blog-app.git
    
 2. Change to the project's directory:   
     ```bash  
@@ -39,7 +39,7 @@ To run the Blog App locally, follow these steps:
    ```bash
    npm start
 5. Open the application in your browser:   
-   ``bash
+   ```bash
    Open a web browser and navigate to http://localhost:7000 to access the application.
    
    
