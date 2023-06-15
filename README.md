@@ -30,31 +30,26 @@ To run the Blog App locally, follow these steps:
    git clone <repository-url>
    
 2. Change to the project's directory:   
-   cd blog-app
+    ```bash  
+    cd create-blog-app
 3. Install dependencies:   
+   ```bash
    npm install
 4. Start the development server:   
+   ```bash
    npm start
 5. Open the application in your browser:   
-   http://localhost:3000
+   ``bash
+   Open a web browser and navigate to http://localhost:7000 to access the application.
    
-   for running the server
+   
 1. Change to the project's directory:   
-   cd blog-app/server  
+   ```bash
+   Open the new terminal and change project's directory
+   cd create-blog-app/server
+   
 2. Start the JSON server:   
+   ```bash
    npm start   
    
    
-<!-- ## Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/Anujsharma2590/create-csv-file.git
-   
-   cd create-csv-file
-   npm install
-   
-   npm start
-   
-   Open a web browser and navigate to http://localhost:7000 to access the application. -->
