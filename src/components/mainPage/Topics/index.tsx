@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styles from './index.module.scss'
 import { BlogListType, TabpaneEnum, client } from '..'
 import TopicRow from './TopicRow'
-import { message } from 'antd'
+import { Empty, message } from 'antd'
 
 type TopicsPropsType = {
   topicsArray?: BlogListType[]
@@ -33,7 +33,7 @@ const Topics: FC<TopicsPropsType> = ({ topicsArray, fetchBlogs, tabValue }) => {
             <TopicRow data={ele} onDelete={handleDelete} />
           ))
         ) : (
-          <div>Loading...</div>
+          <Empty />
         )}
       </div>
     </>
