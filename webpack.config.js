@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const tsTsxJsJsxRegex = /\.(ts|tsx|js|jsx)$/;
@@ -118,8 +119,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new webpack.ProvidePlugin({
+      "window.Quill": "quill",
+    }),
   ],
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, "dist"),
     },

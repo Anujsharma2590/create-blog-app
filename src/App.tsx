@@ -1,8 +1,14 @@
 import { FC } from 'react'
-import styles from './index.module.scss'
+import { BrowserRouter } from 'react-router-dom'
+
+import AppRoutes from './routes/AppRoutes'
 
 const App: FC = () => {
-  return <div className={styles.mainContainer}>Hello, React!</div>
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
 
 export default App
