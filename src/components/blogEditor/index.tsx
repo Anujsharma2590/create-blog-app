@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import ReactQuill, { Quill } from 'react-quill'
 import ImageResize from 'quill-image-resize-module'
 
@@ -152,44 +152,3 @@ const Header: FC<HeaderPropsType> = ({ handleNavigateBack }) => {
 }
 
 export default BlogEditor
-
-// const  modules  = {
-//   toolbar: [
-//       [{ font: [] }],
-//       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-//       ["bold", "italic", "underline", "strike"],
-//       [{ color: [] }, { background: [] }],
-//       [{ script:  "sub" }, { script:  "super" }],
-//       ["blockquote", "code-block"],
-//       [{ list:  "ordered" }, { list:  "bullet" }],
-//       ["link", "image", "video"],
-//       ["clean"],
-//   ],
-// };
-
-// toolbar: [
-//     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-//     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-//     ['blockquote', 'code-block'],
-
-//     [
-//       { list: 'ordered' },
-//       { list: 'bullet' },
-//       { indent: '-1' },
-//       { indent: '+1' },
-//       { align: [] },
-//     ],
-//     [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-//     [{ direction: 'rtl' }], // text direction,
-
-//     [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-
-//     ['link', 'image'],
-
-//     ['clean'], // remove formatting button
-//   ],
-//   imageResize: {
-//     // parchment: Quill.import('parchment'),
-//     modules: ['Resize', 'DisplaySize'],
-//   },
