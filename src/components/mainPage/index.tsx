@@ -8,7 +8,7 @@ import axios from 'axios'
 import styles from './index.module.scss'
 
 export const client = axios.create({
-  baseURL: 'http://localhost:3006',
+  baseURL: 'https://create-blog-app-server.onrender.com',
 })
 export type BlogListType = {
   id: string
