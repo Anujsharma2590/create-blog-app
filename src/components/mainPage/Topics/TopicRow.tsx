@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { BlogListType } from '..'
 import { DeleteIcon } from '../../../resources/icons/DeleteIcon'
 
 import styles from './index.module.scss'
+import DeleteTopicModal from './DeleteTopicModal'
 
 type topicsArrayTypeProps = {
   data?: BlogListType
@@ -23,6 +24,7 @@ enum keywordTag {
 }
 
 const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const navigate = useNavigate()
 
   const handleDelete = () => {
@@ -43,6 +45,14 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
     if (data) {
       navigate(`/view/${data.id}`)
     }
+  }
+
+  const handleCancel = () => {
+    setIsDeleteModalOpen(false)
+  }
+
+  const showModal = () => {
+    setIsDeleteModalOpen(true)
   }
 
   return (
@@ -73,7 +83,7 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
         </div>
       </div>
       <div className={styles.CustomContainer}>
-        <span className={styles.deleteIconWrapper} onClick={handleDelete}>
+        <span className={styles.deleteIconWrapper} onClick={showModal}>
           <DeleteIcon />
         </span>
         <Button
@@ -83,6 +93,12 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
           {data?.content ? 'Edit' : ' Write'} &gt;
         </Button>
       </div>
+      <DeleteTopicModal
+        isDeleteModalOpen={isDeleteModalOpen}
+        handleCancel={handleCancel}
+        handleDelete={handleDelete}
+        topicName={data?.topic}
+      />
     </div>
   )
 }
