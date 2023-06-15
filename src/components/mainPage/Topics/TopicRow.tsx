@@ -30,6 +30,7 @@ const TopicRow: FC<topicsArrayTypeProps> = ({ data, onDelete }) => {
   const handleDelete = () => {
     if (data) {
       onDelete(data?.id)
+      setIsDeleteModalOpen(false)
     }
   }
   function handleNavigate() {
