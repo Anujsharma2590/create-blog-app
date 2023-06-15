@@ -22,7 +22,7 @@ type CreateModalTopicProps = {
   handleCancel: () => void
 }
 
-type DeleteModalFooterProps = {
+type CreateModalFooterProps = {
   handleCreate: () => void
   handleDiscard: () => void
 }
@@ -119,7 +119,7 @@ const CreateModalTopic: FC<CreateModalTopicProps> = ({
   )
 }
 
-const CreateTopicModalFooter: FC<DeleteModalFooterProps> = ({
+const CreateTopicModalFooter: FC<CreateModalFooterProps> = ({
   handleCreate,
   handleDiscard,
 }) => {
