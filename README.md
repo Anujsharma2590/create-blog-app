@@ -52,4 +52,12 @@ To run the Blog App locally, follow these steps:
    ```bash
    npm start   
    
+##Usage
+
+Once the application is up and running, you can use the following steps to interact with it:
+
+1. On the main page, you will see a list of topic/blog. You can click on a topic/blog to view its details.
+2. To create a new blog post, click on the "Add Topic" button and write you blog. Once you finish writing then click on "Update" button.
+3. To edit an existing blog post, click on the "Edit" button on the topic/blog detail page and make the desired changes.
+4. To delete a blog post, click on the "Delete" button on the topic/blog then modal will open then press "Delete" button.  
    
