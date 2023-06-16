@@ -29,6 +29,8 @@ const TabContainer: FC = () => {
 
   const [blogsList, setBlogList] = useState<BlogListType[]>()
 
+  const [loading, setLoading] = useState<boolean>(true)
+
   const showModal = () => {
     setIsModalOpen(true)
   }
@@ -48,6 +50,7 @@ const TabContainer: FC = () => {
   )
 
   const onChange = async (key: string) => {
+    setLoading(true)
     if (key === TabpaneEnum.All) {
       const response = await fetchBlogs()
       if (response) {
@@ -61,17 +64,22 @@ const TabContainer: FC = () => {
         }
       } catch (error) {
         console.error('Error fetching blogs by category:', error)
+      } finally {
+        setLoading(false)
       }
     }
   }
 
   async function fetchBlogs() {
+    setLoading(true)
     try {
       const response = await client.get('/blogs')
       return response.data
     } catch (error) {
       console.error('Error fetching blogs:', error)
       return null
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -106,6 +114,7 @@ const TabContainer: FC = () => {
           topicsArray={blogsList}
           fetchBlogs={onChange}
           tabValue={TabpaneEnum.All}
+          loading={loading}
         />
       ),
     },
@@ -117,6 +126,7 @@ const TabContainer: FC = () => {
           topicsArray={blogsList}
           fetchBlogs={onChange}
           tabValue={TabpaneEnum.Custom}
+          loading={loading}
         />
       ),
     },
@@ -128,6 +138,7 @@ const TabContainer: FC = () => {
           topicsArray={blogsList}
           fetchBlogs={onChange}
           tabValue={TabpaneEnum.ICP}
+          loading={loading}
         />
       ),
     },
@@ -139,6 +150,7 @@ const TabContainer: FC = () => {
           topicsArray={blogsList}
           fetchBlogs={onChange}
           tabValue={TabpaneEnum.Mission}
+          loading={loading}
         />
       ),
     },
@@ -150,6 +162,7 @@ const TabContainer: FC = () => {
           topicsArray={blogsList}
           fetchBlogs={onChange}
           tabValue={TabpaneEnum.Product}
+          loading={loading}
         />
       ),
     },

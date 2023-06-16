@@ -3,6 +3,7 @@ import ReactQuill, { Quill } from 'react-quill'
 import ImageResize from 'quill-image-resize-module'
 
 import 'react-quill/dist/quill.snow.css'
+import Loader from '../shared/Loader'
 
 import styles from './index.module.scss'
 import { BlogListType, client } from '../mainPage'
@@ -18,6 +19,7 @@ const BlogEditor = () => {
   const [text, setText] = useState('')
   const [inputValue, setInputValue] = useState('')
   const [blog, setBlog] = useState<BlogListType>()
+  const [loading, setLoading] = useState<boolean>(true)
   const navigate = useNavigate()
 
   const handleChange = (value: string) => {
@@ -25,6 +27,7 @@ const BlogEditor = () => {
   }
 
   const handleUpdateBlog = async () => {
+    setLoading(true)
     const payload = {
       content: text,
       topic: inputValue,
@@ -41,20 +44,33 @@ const BlogEditor = () => {
     } catch (error) {
       message.error('Error in updating the blog', 2)
       console.error('Error making PUT request:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
+  async function fetchBlog() {
+    setLoading(true)
+    try {
+      const response = await client.get(`/blogs/${blogId}`)
+      return response.data
+    } catch (error) {
+      console.error('Error fetching blog:', error)
+      return null
+    } finally {
+      setLoading(false)
+    }
+  }
+  const getBlogById = async () => {
+    const response = await fetchBlog()
+    if (response) {
+      setInputValue(response.topic)
+      setText(response.content)
+      setBlog(response)
+    }
+  }
   useEffect(() => {
-    client
-      .get(`/blogs/${blogId}`)
-      .then((response) => {
-        setInputValue(response.data.topic)
-        setText(response.data.content)
-        setBlog(response.data)
-      })
-      .catch((error) => {
-        console.error('Error fetching block data:', error)
-      })
+    getBlogById()
   }, [blogId])
 
   const toolbarOptions = [
@@ -98,40 +114,44 @@ const BlogEditor = () => {
   return (
     <div className={styles.mainContainer}>
       <Header handleNavigateBack={handleNavigateBack} />
-      <div className={styles.editBlogContainer}>
-        <div className={styles.inputContainer}>
-          <div className={styles.inputContainerWrappr}>
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Enter a title"
-              value={inputValue}
-              className={styles.textEditorInput}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className={styles.editBlogContainer}>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputContainerWrappr}>
+              <label htmlFor="title">Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter a title"
+                value={inputValue}
+                className={styles.textEditorInput}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+            </div>
+            <div>
+              <Button
+                style={{ background: '#E65027', color: 'white' }}
+                size="large"
+                onClick={handleUpdateBlog}
+              >
+                Update
+              </Button>
+            </div>
           </div>
-          <div>
-            <Button
-              style={{ background: '#E65027', color: 'white' }}
-              size="large"
-              onClick={handleUpdateBlog}
-            >
-              Update
-            </Button>
-          </div>
-        </div>
 
-        <ReactQuill
-          value={text}
-          theme="snow"
-          modules={modules}
-          formats={formatOptions}
-          onChange={handleChange}
-          className={styles.editorWrapper}
-        />
-      </div>
+          <ReactQuill
+            value={text}
+            theme="snow"
+            modules={modules}
+            formats={formatOptions}
+            onChange={handleChange}
+            className={styles.editorWrapper}
+          />
+        </div>
+      )}
     </div>
   )
 }
