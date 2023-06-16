@@ -24,6 +24,10 @@ This app provides the following features:
 - Delete blog posts: Users can delete their topic/blog if needed.
 - View blog posts: Users can view a list of all topic list on the main page, with the option to click on a specific post to view its details.
 
+## Deployment
+
+[Deployment Link](https://648bed428726712e14712bf6--bespoke-valkyrie-38b650.netlify.app/)
+
 ## Installation
 
 To run the Blog App locally, follow these steps:
