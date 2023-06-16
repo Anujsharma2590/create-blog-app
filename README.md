@@ -26,7 +26,7 @@ This app provides the following features:
 
 ## Deployment
 
-[Deployment Link](https://648bed428726712e14712bf6--bespoke-valkyrie-38b650.netlify.app/)
+[https://create-blog-app.netlify.app/](https://648bed428726712e14712bf6--bespoke-valkyrie-38b650.netlify.app/)
 
 ## Installation
 
