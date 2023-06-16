@@ -24,6 +24,10 @@ This app provides the following features:
 - Delete blog posts: Users can delete their topic/blog if needed.
 - View blog posts: Users can view a list of all topic list on the main page, with the option to click on a specific post to view its details.
 
+## Deployment
+
+[https://create-blog-app.netlify.app/](https://648c06ceecb9cc36740e1b2a--beamish-treacle-c23c27.netlify.app/)
+
 ## Installation
 
 To run the Blog App locally, follow these steps:
@@ -47,14 +51,6 @@ To run the Blog App locally, follow these steps:
    Open a web browser and navigate to http://localhost:3000 to access the application.
    
    
-1. Change to the project's directory:   
-   ```bash
-   Open the new terminal and change project's directory
-   cd create-blog-app/server
-   
-2. Start the JSON server:   
-   ```bash
-   npm start   
    
 ## Usage
 
