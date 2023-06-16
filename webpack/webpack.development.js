@@ -58,10 +58,15 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
     compress: true,
     port: 3000,
+    host: "localhost",
+    compress: true,
+    open: {
+      target: "https://localhost:3000",
+      app: {
+        name: "google-chrome",
+      },
+    },
   },
 };
