@@ -47,14 +47,6 @@ To run the Blog App locally, follow these steps:
    Open a web browser and navigate to http://localhost:3000 to access the application.
    
    
-1. Change to the project's directory:   
-   ```bash
-   Open the new terminal and change project's directory
-   cd create-blog-app/server
-   
-2. Start the JSON server:   
-   ```bash
-   npm start   
    
 ## Usage
 
